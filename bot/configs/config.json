@@ -1,6 +1,6 @@
 {
   "TOKEN": "your_token",
-  "PREFIX": ",",
+  "PREFIX": "your_prefix",
 
   "NODES": [
     {
