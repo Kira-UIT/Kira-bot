@@ -9,7 +9,7 @@ const playermanager = require("../../handlers/playermanager");
 module.exports = {
   name: "play",
   aliases: ["p"],
-  execute: async (client, message, cmd, args) => {
+  execute: async (client, message, args, player) => {
     let text = args.join(" ");
     try {
       if (!text) {

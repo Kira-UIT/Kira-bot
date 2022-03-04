@@ -20,8 +20,25 @@ module.exports = {
             ),
         );
       }
+      let player = client.manager.create({
+        guild: message.guild.id,
+        voiceChannel: message.member.voice.channel.id,
+        textChannel: message.channel.id
+      });
+
+      if (player.state !== "CONNECTED") { 
+        player.connect();
+        player.stop();
+      }
+
     } catch (e) {
       console.log(e);
+      return message.channel.send(new MessageEmbed()
+        .setColor(embed.wrongcolor)
+        .setFooter(embed.footertext, embed.footericon)
+        .setTitle(`${emojis.MESSAGE.ERROR} ERROR | An error occurred`)
+        .setDescription(`\`\`\`${e.message}\`\`\``)
+      );
     }
   },
 };

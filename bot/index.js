@@ -18,4 +18,6 @@ client.once("ready", () => {
   require(`./handlers/${handler}`)(client);
 });
 
+client.on("raw", d => client.manager.updateVoiceState(d));
+
 client.login(config.TOKEN);

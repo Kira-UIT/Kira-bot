@@ -15,7 +15,7 @@ module.exports = async (client, message) => {
     let command = client.commands.get(cmd);
     if (!command) command = client.commands.get(client.aliases.get(cmd));
     try {
-      command.execute(client, message, cmd, args);
+      command.execute(client, message, args, player);
     } catch (e) {
       console.log(e);
     }
