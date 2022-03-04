@@ -1,0 +1,22 @@
+{
+  "TOKEN": "your_token",
+  "PREFIX": "your_prefix",
+
+  "NODES": [
+    {
+      "id": "1",
+      "host": "localhost",
+      "port": 2333,
+      "password": "youshallnotpass"
+    }
+  ],
+
+  "SPOTIFY": {
+    "CLIENT_SECRECT": "",
+    "CLIENT_ID": ""
+  },
+  "SETTINGS": {
+    "PROGRESS_EMOJI": "🔶"
+  },
+  "OWNER_ID": "870323935940595763"
+}

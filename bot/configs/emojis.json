@@ -1,0 +1,71 @@
+{
+  "MESSAGE": {
+    "COMMENT": "IF YOU DECIDE TO USE CUSTOM EMOJIS, USE THE NAME AND THE ID IN MSG, EXAMPLE: ⬜ --> <:progressbar_left_filled:818558865268408341>",
+    "ERROR": "❌",
+    "SUCCESS": "✅",
+    "DISABLED": "❌",
+    "ENABLED": "✅",
+
+    "PROGRESS_BAR": {
+      "LEFT_INDICATOR": "[",
+      "RIGHT_INDICATOR": "]",
+      "EMPTY_FRAME": "⬜",
+      "FILLED_FRAME": "🟧"
+    },
+
+    "PLAYING": "🎶",
+    "PRUNING": "💬",
+    "equalizer": "🎚",
+    "cleared": "🗑",
+    "LEAVE_ON_EMPTY": "🗣️",
+    "TIME": "⌛",
+    "premium": "💰",
+    "SONG_BY": "💯",
+    "SETUP": "⚙️",
+    "DJ": "🎧",
+    "BOT": "🤖",
+    "SEARCH": "🔎",
+    "RESUME": "▶",
+    "PAUSE": "⏸",
+    "LYRICS": "📃",
+    "DISK": "📀",
+    "PING": "🏓",
+
+    "REWIND": "⏪",
+    "FORWARD": "⏩",
+    "PAUSE_RESUME": "⏯️",
+    "STOP": "⏹️",
+    "PREVIOUS_TRACK": "⏮️",
+    "NEXT_TRACK": "⏭️",
+    "REPLAY_TRACK": "🔃",
+    "REDUCE_VOLUME": "🔉",
+    "RAISE_VOLUME": "🔊",
+    "TOGGLE_MUTE": "🔇",
+    "REPEAT_MODE": "🔄",
+    "AUTOPLAY_MODE": "♾",
+    "SHUFFLE": "🔀",
+    "SHOW_QUEUE": "📑",
+    "SHOW_CURRENT_TRACK": "🩸"
+  },
+  "REACT": {
+    "COMMENT": "IF YOU DECIDE TO USE CUSTOM EMOJIS, USE JUST THE ID IN REACT, EXAMPLE: ⏪ --> 818558865268408341",
+    "ERROR": "❌",
+    "SUCCESS": "✅",
+
+    "REWIND": "⏪",
+    "FORWARD": "⏩",
+    "PAUSE_RESUME": "⏯️",
+    "STOP": "⏹️",
+    "PREVIOUS_TRACK": "⏮️",
+    "NEXT_TRACK": "⏭️",
+    "REPLAY_TRACK": "🔃",
+    "REDUCE_VOLUME": "🔉",
+    "RAISE_VOLUME": "🔊",
+    "TOGGLE_MUTE": "🔇",
+    "REPEAT_MODE": "🔄",
+    "AUTOPLAY_MODE": "♾",
+    "SHUFFLE": "🔀",
+    "SHOW_QUEUE": "📑",
+    "SHOW_CURRENT_TRACK": "🩸"
+  }
+}
