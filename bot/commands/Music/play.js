@@ -5,11 +5,14 @@ const embed = require(`../../configs/embed.json`);
 const emojis = require(`../../configs/emojis.json`);
 
 const playermanager = require("../../handlers/playermanager");
+const { deleteMessageAuthor, checkBotJoined } = require('../../utils/utils');
 
 module.exports = {
   name: "play",
   aliases: ["p"],
   execute: async (client, message, args, player) => {
+    deleteMessageAuthor(client, message);
+    checkBotJoined(message);
     let text = args.join(" ");
     try {
       if (!text) {

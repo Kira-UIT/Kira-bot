@@ -14,7 +14,7 @@ module.exports = (client) => {
       commands.forEach((file) => {
         let command = require(`../commands/${dir}/${file}`);
         if (command.name) {
-          if (command.aliases) {
+          if (command.aliases && command.aliases.length !== 0) {
             client.commands.set(command.name, command);
             table.addRow(`${index}`, command.name, command.aliases, "Ready");
           } else {

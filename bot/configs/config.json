@@ -1,5 +1,5 @@
 {
-  "TOKEN": "your_token",
+  "TOKEN": "your_bot_token",
   "PREFIX": "your_prefix",
 
   "NODES": [

@@ -2,7 +2,7 @@ const { MessageEmbed } = require("discord.js");
 const config = require("../configs/config.json");
 const embed = require("../configs/embed.json");
 
-const {formatTime} = require('../utils/utils');
+const { formatTime } = require("../utils/utils");
 
 module.exports = async (client, message, args) => {
   if (!message.guild) return;
@@ -27,11 +27,14 @@ module.exports = async (client, message, args) => {
   let search = args.join(" ");
   let res;
 
-  let player = client.manager.create({
-    guild: message.guild.id,
-    voiceChannel: message.member.voice.channel.id,
-    textChannel: message.channel.id,
-  });
+  let player = client.manager.players.get(message.guild.id);
+  if (!player) {
+    player = client.manager.create({
+      guild: message.guild.id,
+      voiceChannel: message.member.voice.channel.id,
+      textChannel: message.channel.id,
+    });
+  } else if (channel.id !== player.voiceChannel) return;
   if (player.state !== "CONNECTED") {
     player.set("message", message);
     player.set("playerauthor", message.author.id);
@@ -83,13 +86,11 @@ module.exports = async (client, message, args) => {
     player.queue.add(res.tracks[0]);
     player.play();
     player.pause(false);
-  }
-  else if(!player.queue || !player.queue.current){
+  } else if (!player.queue || !player.queue.current) {
     player.queue.add(res.tracks[0]);
     player.play();
     player.pause(false);
-  } 
-  else {
+  } else {
     player.queue.add(res.tracks[0]);
     let playEmbed = new MessageEmbed()
       .setTitle(
@@ -100,7 +101,11 @@ module.exports = async (client, message, args) => {
       .setThumbnail(
         `https://img.youtube.com/vi/${res.tracks[0].identifier}/mqdefault.jpg`,
       )
-      .addField("⌛ Duration: ", `\`${formatTime(res.tracks[0].duration)}\``, true)
+      .addField(
+        "⌛ Duration: ",
+        `\`${formatTime(res.tracks[0].duration)}\``,
+        true,
+      )
       .addField("💯 Song By: ", `\`${res.tracks[0].author}\``, true)
       .addField("🔂 Queue length: ", `\`${player.queue.length} Songs\``, true)
       .setFooter(
@@ -109,14 +114,17 @@ module.exports = async (client, message, args) => {
           dynamic: true,
         }),
       );
-    console.log(player.queue)
-    return message.channel.send(playEmbed)
-    .then(msg => {
-        if (msg) msg.delete({
-            timeout: 8000
-        })
-        .catch (e => console.log("couldn't delete message this is a catch to prevent a crash"))
-    })
+    return message.channel.send(playEmbed).then((msg) => {
+      if (msg)
+        msg
+          .delete({
+            timeout: 8000,
+          })
+          .catch((e) =>
+            console.log(
+              "couldn't delete message this is a catch to prevent a crash",
+            ),
+          );
+    });
   }
-  console.log(player.queue)
 };

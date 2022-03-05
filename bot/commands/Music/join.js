@@ -1,30 +1,27 @@
 const Discord = require(`discord.js`);
 const { MessageEmbed } = require(`discord.js`);
+
 const config = require(`../../configs/config.json`);
 const embed = require(`../../configs/embed.json`);
 const emojis = require(`../../configs/emojis.json`);
 
+const { deleteMessageAuthor, checkBotJoined } = require('../../utils/utils');
+
 module.exports = {
   name: "join",
-  aliases: [`summon`, `create`],
-  execute: async (client, message, args) => {
+  aliases: ['j'],
+  execute: async (client, message) => {
     try {
-      let { channel } = message.member.voice;
-      if (!channel) {
-        return message.channel.send(
-          new MessageEmbed()
-            .setColor(embed.WRONG_COLOR)
-            .setFooter(embed.FOOTER_TEXT, embed.FOOTER_ICON)
-            .setTitle(
-              `${emojis.MESSAGE.ERROR} ERROR | You are not connected to a Voice Channel`,
-            ),
-        );
+      deleteMessageAuthor(client, message);
+      checkBotJoined(message);
+      let player = client.manager.players.get(message.guild.id);
+      if (!player) {
+        player = client.manager.create({
+          guild: message.guild.id,
+          voiceChannel: message.member.voice.channel.id,
+          textChannel: message.channel.id
+        });
       }
-      let player = client.manager.create({
-        guild: message.guild.id,
-        voiceChannel: message.member.voice.channel.id,
-        textChannel: message.channel.id
-      });
 
       if (player.state !== "CONNECTED") { 
         player.connect();
