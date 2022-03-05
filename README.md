@@ -1,5 +1,5 @@
-# 🤖 Kira Bot (Discord Music Bot)
-> EvoBot is a Discord Music Bot built with discord.js & uses Command Handler from [discordjs.guide](https://discordjs.guide)
+# 🤖 **Kira Bot (Discord Music Bot)**
+> Kira-bot is a Discord Music Bot built with discord.js & uses Command Handler from [discordjs.guide](https://discordjs.guide)
 ## Requirements
 1. Discord Bot Token **[Guide](https://discordjs.guide/preparations/setting-up-a-bot-application.html#creating-your-bot)**
 2. Install **[Node.js](https://nodejs.org/en/download/)**
@@ -11,6 +11,27 @@
 git clone https://github.com/Kira-UIT/Kira-Bot.git
 cd Kira-Bot/bot
 npm install
+```
+
+## 📂 **Directory Structure**
+
+```
+Kira-bot
+├── bot
+│   ├── commands
+│   ├── configs
+│   ├── handlers
+│   ├── node_modules
+│   ├── utils
+│   ├── index.js
+│   ├── package-lock.json
+│   └── package.json
+├── server
+│   ├── logs
+│   ├── application.yml
+│   └── Lavalink.jar
+├── .gitignore
+└── README.md
 ```
 
 ## 🛠️ **Configuration**
