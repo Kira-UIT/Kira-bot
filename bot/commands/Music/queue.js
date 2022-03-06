@@ -17,27 +17,20 @@ module.exports = {
     try {
       deleteMessageAuthor(client, message);
       const tracks = player.queue;
-      if (tracks.length !== 0) {
+      console.log(tracks);
+
+      let queue = tracks.slice(0, tracks.length);
+      let text = ``;
+      let messageEmbed = new MessageEmbed();
+      if (!tracks.length) {
         return message.channel
           .send(
             new MessageEmbed()
-              .setAuthor(
-                `Queue for ${message.guild.name}  -  [ ${player.queue.length} Tracks ]`,
-                message.guild.iconURL({
-                  dynamic: true,
-                }),
-              )
-              .setFooter(embed.footertext, embed.footericon)
-              .setColor(embed.color)
-              .addField(
-                `**0) CURRENT TRACK**`,
-                `**${player.queue.current.title.substr(0, 60)}** - \`${
-                  player.queue.current.isStream
-                    ? `LIVE STREAM`
-                    : formatTime(player.queue.current.duration).split(` | `)[0]
-                }\`\n*request by: ${player.queue.current.requester.tag}*`,
-              )
-              .setDescription(`${emojis.MESSAGE.ERROR} No tracks in the queue`),
+              .setColor(embed.WRONG_COLOR)
+              .setFooter(embed.FOOTER_TEXT, embed.FOOTER_ICON)
+              .setTitle(
+                `${emojis.MESSAGE.ERROR} Error | No song`,
+              ),
           )
           .then((msg) => {
             msg
@@ -46,6 +39,48 @@ module.exports = {
                 console.log("Could not delete, this prevents a bug"),
               );
           });
+      }
+      if (queue.length >= 0) {
+        for (let i = 0; i < queue.length; i++) {
+          if (i === 0) {
+            text += `\`${i + 1}.\` - ${tracks[i].title} | \` ${
+              tracks[i].isStream
+                ? "LIVE STREAM"
+                : formatTime(tracks[i].duration)
+            } \` | \` Requested by ${tracks[i].requester.tag} \``;
+          } else {
+            text += `\n\`${i + 1}.\` - ${tracks[i].title} | \` ${
+              tracks[i].isStream
+                ? "LIVE STREAM"
+                : formatTime(tracks[i].duration)
+            } \` | \` Requested by ${tracks[i].requester.tag} \``;
+          }
+        }
+        messageEmbed.setAuthor(
+          `Queue for ${message.guild.name}  -  [ ${player.queue.length} Tracks ]`,
+          message.guild.iconURL({
+            dynamic: true,
+          }),
+        );
+        messageEmbed.setColor(embed.COLOR);
+        messageEmbed.addField(
+          `${emojis.MESSAGE.PLAYING}** CURRENT TRACK**`,
+          `**${player.queue.current.title.substr(0, 60)}** - \`${
+            player.queue.current.isStream
+              ? `LIVE STREAM`
+              : formatTime(player.queue.current.duration)
+          }\` \`request by ${player.queue.current.requester.tag}\``,
+        );
+        if (text) {
+          messageEmbed.addField(`${emojis.MESSAGE.SHOW_QUEUE} **QUEUE**`, text);
+        }
+        messageEmbed.setTimestamp();
+        messageEmbed.setFooter(embed.FOOTER_TEXT, embed.FOOTER_ICON);
+        return message.channel.send(messageEmbed).then((msg) => {
+          msg
+            .delete({ timeout: 10000 })
+            .catch((e) => console.log("Could not delete, this prevents a bug"));
+        });
       }
     } catch (error) {
       console.log(error);

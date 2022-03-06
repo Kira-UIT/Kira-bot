@@ -12,7 +12,6 @@ function formatTime(time) {
     let seconds = ((time % 6000) / 1000).toFixed(0);
     if (hours < 1)
       return (
-        "00:" +
         (minutes < 10 ? "0" : "") +
         minutes +
         ":" +

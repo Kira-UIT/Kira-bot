@@ -23,7 +23,13 @@ module.exports = {
               )
               .setColor(embed.COLOR)
               .setFooter(embed.FOOTER_TEXT, embed.FOOTER_ICON),
-          );
+          ).then((msg) => {
+            msg
+              .delete({ timeout: 5000 })
+              .catch((e) =>
+                console.log("Could not delete, this prevents a bug"),
+              );
+          });
         } else {
           return message.channel
             .send(
